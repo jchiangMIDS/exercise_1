@@ -35,6 +35,7 @@ WITH SERDEPROPERTIES (
 STORED AS TEXTFILE
 LOCATION /user/w205/;
 
+
 DROP TABLE responses;
 CREATE EXTERNAL TABLE responses (Provider_ID STRING, Hospital_name STRING, 
 Address STRING, City STRING, State STRING, ZIP_Code STRING, County_name STRING, 
