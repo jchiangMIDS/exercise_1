@@ -18,6 +18,7 @@ wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/readmissions.csv
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/Measures.csv
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/surveys_responses.csv
+unzip effective_care.zip
 
 hdfs dfs -put hospitals.csv /user/w205/hospital_compare
 hdfs dfs -put effective_care.csv.zip /user/w205/hospital_compare
