@@ -11,15 +11,12 @@ tail -n +2 ~/Documents/W205/hvbp_hcahps_05_28_2015.csv > ~/Documents/W205/surver
 # Make a new folder in HDFS for this lab: 
 hdfs dfs -mkdir /user/w205/hospital_compare
 
-# Load the datasets into HDFS
-
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/hospitals.csv
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/effective_care.zip
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/readmissions.csv
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/Measures.csv
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/surveys_responses.csv
+# Upload files into w205 instance
+git clone https://github.com/jchiangMIDS/exercise_1
+cd exercise_1/loading_and_modelling
 unzip effective_care.zip
 
+# Load the datasets into HDFS
 hdfs dfs -put hospitals.csv /user/w205/hospital_compare
 hdfs dfs -put effective_care.csv.zip /user/w205/hospital_compare
 hdfs dfs -put readmissions.csv /user/w205/hospital_compare
