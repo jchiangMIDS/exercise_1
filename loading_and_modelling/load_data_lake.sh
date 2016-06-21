@@ -14,7 +14,7 @@ hdfs dfs -mkdir /user/w205/hospital_compare
 # Load the datasets into HDFS
 
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/hospitals.csv
-wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/effective_care.csv.zip
+wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/effective_care.zip
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/readmissions.csv
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/Measures.csv
 wget https://github.com/jchiangMIDS/exercise_1/blob/master/loading_and_modelling/surveys_responses.csv
