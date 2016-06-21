@@ -23,7 +23,7 @@ WITH SERDEPROPERTIES (
   "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/surveys_responses';
 
 
 CREATE EXTERNAL TABLE IF NOT EXISTS responses_schema (Provider_ID STRING, Hospital_name STRING, 
@@ -37,4 +37,4 @@ WITH SERDEPROPERTIES (
   "escapeChar" = '\\'
 )
 STORED AS TEXTFILE
-LOCATION '/user/w205/hospital_compare';
+LOCATION '/user/w205/hospital_compare/effective_care';
