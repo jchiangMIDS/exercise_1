@@ -1,6 +1,6 @@
 
 
-CREATE EXTERNAL TABLE IF NOT EXISTS effective_care_schema (Provider_Number STRING, Hospital_Name STRING,
+CREATE EXTERNAL TABLE IF NOT EXISTS surveys_responses_schema (Provider_Number STRING, Hospital_Name STRING,
 Address STRING, City STRING, State STRING, ZIP_Code STRING, County_Name STRING, 
 Communication_with_Nurses_Achievement_Points STRING, Communication_with_Nurses_Improvement_Points STRING,
 Communication_with_Nurses_Dimension_Score STRING, Communication_with_Doctors_Achievement_Points STRING, 
@@ -26,7 +26,7 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/surveys_responses';
 
 
-CREATE EXTERNAL TABLE IF NOT EXISTS responses_schema (Provider_ID STRING, Hospital_name STRING, 
+CREATE EXTERNAL TABLE IF NOT EXISTS effective_care_schema (Provider_ID STRING, Hospital_name STRING, 
 Address STRING, City STRING, State STRING, ZIP_Code STRING, County_name STRING, 
 Phone_number STRING, Condition STRING, Measure_ID STRING, Measure_name STRING, 
 Score BIGINT, Sample BIGINT, Footnote STRING, Measure_Start_Date DATE, Measure_End_Date DATE)
