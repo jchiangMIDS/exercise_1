@@ -26,10 +26,10 @@ STORED AS TEXTFILE
 LOCATION '/user/w205/hospital_compare/surveys_responses';
 
 
-CREATE EXTERNAL TABLE IF NOT EXISTS effective_care_schema (Provider_ID STRING, Hospital_name STRING, 
+CREATE EXTERNAL TABLE IF NOT EXISTS effectivecare_schema (Provider_ID STRING, Hospital_name STRING, 
 Address STRING, City STRING, State STRING, ZIP_Code STRING, County_name STRING, 
 Phone_number STRING, Condition STRING, Measure_ID STRING, Measure_name STRING, 
-Score BIGINT, Sample BIGINT, Footnote STRING, Measure_Start_Date DATE, Measure_End_Date DATE)
+Score INT, Sample INT, Footnote STRING, Measure_Start_Date DATE, Measure_End_Date DATE)
 ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
 WITH SERDEPROPERTIES (
  "separatorChar" = ",",
