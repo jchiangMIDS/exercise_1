@@ -6,6 +6,7 @@ tail -n +2 ~/Documents/W205/hvbp_hcahps_05_28_2015.csv > ~/Documents/W205/surver
 /root/start-hadoop.sh
 
 # Make a new folders in HDFS for this lab: 
+hdfs dfs -mkdir /user/w205/hospital_compare
 hdfs dfs -mkdir /user/w205/hospital_compare/effective_care
 hdfs dfs -mkdir /user/w205/hospital_compare/surveys_responses
 
