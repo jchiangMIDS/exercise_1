@@ -5,12 +5,7 @@ CREATE TABLE procedures
    STORED AS TEXTFILE
    AS
 SELECT Provider_ID, Measure_ID, Score, Sample, State, Hospital_Name 
-FROM effective_care_schema;
-
-
-#Add primary key to slimmed down main table
-ALTER TABLE procedures
-ADD PRIMARY KEY (P_Id);
+FROM effectivecare_schema;
 
 
 #Createatable for slimmed down surveytable called surveys
@@ -23,12 +18,12 @@ FROM surveys_responses_schema;
 
 
 #Transform data to have Min, Max, and Range for procedure scores as dilneated by Measure_ID
-CREATE TABLE scoremetrics
+CREATE TABLE score_metric
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
    STORED AS TEXTFILE
    AS
-SELECT Measure_ID, MIN(Score) AS MaxScore, MIN(Score) AS MinScore, MAX(Score)-MIN(Score) As Range 
-FROM effective_care_schema 
+SELECT Measure_ID, MAX(Score) AS MaxScore, MIN(Score) AS MinScore, MAX(Score)-MIN(Score) As Range 
+FROM effectivecare_schema 
 WHERE Score BETWEEN 0 AND 5000 GROUP BY Measure_ID;
 
 
@@ -37,7 +32,7 @@ CREATE TABLE procedures_m
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
    STORED AS TEXTFILE
    AS
-SELECT procedures.P_Id, procedures.Provider_ID, procedures.Measure_ID, procedures.Score, 
+SELECT procedures.Provider_ID, procedures.Measure_ID, procedures.Score, 
 scoremetrics.MinScore, scoremetrics.MaxScore, scoremetrics.Range, procedures.Hospital_Name, procedures.State 
 FROM procedures
 LEFT JOIN scoremetrics ON procedures.Measure_ID = scoremetrics.Measure_ID;
@@ -48,9 +43,8 @@ CREATE TABLE procedure_calc
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
    STORED AS TEXTFILE
    AS
-SELECT P_Id, Provider_ID, (Score-MIN(Score))/Range*100 AS Procedure_Score, Hospital_Name, State
-FROM procedures_m
-WHERE Score BETWEEN 0 AND 5000 GROUP BY Measure_ID;
+SELECT Provider_ID, Measure_ID, (Score-MIN(Score))/Range*100 AS Procedure_Score, Hospital_Name, State
+FROM procedures_m;
 
 
 #Merge new scoremetric values with procedures
@@ -58,7 +52,7 @@ CREATE TABLE hospitals
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
    STORED AS TEXTFILE
    AS
-SELECT procedure_calc.P_Id, procedure_calc.Provider_ID, procedure_calc.Procedure_Score, 
+SELECT procedure_calc.Provider_ID, procedure_calc.Measure_ID, procedure_calc.Procedure_Score, 
 surveys.HCAHPS_Base_Score, surveys.HCAHPS_Consistency_Score, procedure_calc.State, procedure_calc.Hospital_Name
 FROM surveys
 LEFT JOIN procedure_calc ON procedure_calc.Provider_ID = surveys.Provider_Number;
