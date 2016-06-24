@@ -13,7 +13,7 @@ hdfs dfs -mkdir /user/w205/hospital_compare/surveys_responses
 # Upload files into w205 instance
 git clone https://github.com/jchiangMIDS/exercise_1
 cd exercise_1/loading_and_modelling
-unzip effective_care.zip
+unzip effective_care.csv.zip
 
 # Load the datasets into HDFS
 hdfs dfs -put effective_care.csv /user/w205/hospital_compare/effective_care
