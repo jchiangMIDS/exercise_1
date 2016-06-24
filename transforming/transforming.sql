@@ -18,7 +18,7 @@ FROM surveys_responses_schema;
 
 
 #Transform data to have Min, Max, and Range for procedure scores as dilneated by Measure_ID
-CREATE TABLE score_metric
+CREATE TABLE scoremetrics
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.OpenCSVSerde"
    STORED AS TEXTFILE
    AS
