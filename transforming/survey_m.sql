@@ -10,3 +10,5 @@ MIN(hcahps_consistency_score*100/100) AS Consistency_MinScore,
 MAX(hcahps_consistency_score*100/100) AS Consistency_MaxScore, 
 MAX(hcahps_consistency_score*100/100)-MIN(hcahps_consistency_score*100/100) As Consistency_Range 
 FROM surveys_responses_schema;
+
+
