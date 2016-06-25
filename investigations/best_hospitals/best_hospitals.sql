@@ -11,4 +11,4 @@ GROUP BY Hospital_Name;
   SELECT Hospital_Name, procedure*variety as scores, procedure, variety
   FROM best_provider
   ORDER BY scores DESC
-  LIMIT 20;
+  LIMIT 10;
