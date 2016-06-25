@@ -1,0 +1,10 @@
+#Merge nhospitals with survey results
+CREATE TABLE hospitals_final
+   ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
+   STORED AS RCFile
+   AS
+SELECT hospitals.Provider_ID, hospitals.Measure_ID, hospitals.Procedure_Score, 
+survey_calc.base_score, survey_calc.consistency_score, 
+hospitals.State, hospitals.Hospital_Name 
+FROM survey_calc
+LEFT JOIN hospitals ON hospitals.Provider_ID = survey_calc.Provider_Number;
