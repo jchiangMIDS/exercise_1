@@ -1,12 +1,3 @@
-#Createatable for slimmed down maintable now called procedures
-CREATE TABLE procedures
-   ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
-   STORED AS RCFile
-   AS
-SELECT Provider_ID, Measure_ID, Score, Sample, State, Hospital_Name 
-FROM effectivecare_schema;
-
-
 #Transform data to have Min, Max, and Range for procedure scores as dilneated by Measure_ID
 CREATE TABLE scoremetrics
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
