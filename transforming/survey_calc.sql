@@ -1,7 +1,7 @@
 
 
 #Add simplified survey datatable
-CREATE TABLE surveys
+CREATE TABLE survey_calc
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
    STORED AS RCFile
    AS
