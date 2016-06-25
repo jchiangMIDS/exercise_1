@@ -8,15 +8,6 @@ SELECT Provider_ID, Measure_ID, Score, Sample, State, Hospital_Name
 FROM effectivecare_schema;
 
 
-#Createatable for slimmed down surveytable called surveys
-CREATE TABLE surveys
-   ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
-   STORED AS RCFile
-   AS
-SELECT Provider_Number, HCAHPS_Base_Score, HCAHPS_Consistency_Score
-FROM surveys_responses_schema;
-
-
 #Transform data to have Min, Max, and Range for procedure scores as dilneated by Measure_ID
 CREATE TABLE scoremetrics
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
@@ -43,19 +34,32 @@ CREATE TABLE procedure_calc
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
    STORED AS RCFile
    AS
-SELECT Provider_ID, Measure_ID, (Score-MinScore)/Range*100 AS Procedure_Score, Hospital_Name, State
-FROM procedures_m GROUP BY Provider_ID, Measure_ID;
+SELECT Provider_ID, Measure_ID, (Score-MinScore)*100/Range+0.1 AS Procedure_Score
+FROM procedures_m WHERE Score BETWEEN 0 AND 5000; 
 
 
-#Merge new scoremetric values with procedures
+#Merge new procedure_score values with procedures
 CREATE TABLE hospitals
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
    STORED AS RCFile
    AS
 SELECT procedure_calc.Provider_ID, procedure_calc.Measure_ID, procedure_calc.Procedure_Score, 
-surveys.HCAHPS_Base_Score, surveys.HCAHPS_Consistency_Score, procedure_calc.State, procedure_calc.Hospital_Name
-FROM surveys
-LEFT JOIN procedure_calc ON procedure_calc.Provider_ID = surveys.Provider_Number;
+procedures_m.State, procedures_m.Hospital_Name
+FROM procedures_m
+LEFT JOIN procedure_calc ON procedure_calc.Provider_ID = procedures_m.Provider_ID;
+
+
+#Merge nhospitals with survey results
+CREATE TABLE hospitals_final
+   ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
+   STORED AS RCFile
+   AS
+SELECT hospitals.Provider_ID, hospitals.Measure_ID, hospitals.Procedure_Score, 
+surveys_responses_schema.HCAHPS_Base_Score, surveys_responses_schema.HCAHPS_Consistency_Score, 
+hospitals.State, hospitals.Hospital_Name 
+FROM surveys_responses_schema
+LEFT JOIN hospitals ON hospitals.Provider_ID = surveys_responses_schema.Provider_Number;
+
 
 
 
