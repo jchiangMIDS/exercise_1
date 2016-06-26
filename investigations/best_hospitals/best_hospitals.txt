@@ -22,10 +22,14 @@ TIFT REGIONAL MEDICAL CENTER 	6899.774441	81.73758949	84.41372549
 UNIVERSITY OF KENTUCKY HOSPITAL 	6894.459698	83.61690438	82.45294118
 
 The above conclusions are listed with 4 columns: Hospital_Name, scores, Procedure_Score, and Variety_Score. 
-The Procedure_Score is a quality score calculated by normalizing the different score scales by procedures to a 0.1 to 100.1 scale and excluding outliers.
-The Variety_Score is a representation of how many procedures available at the hospital out of total possible number or procedures on a 0.1 to 100.1 scale.
+The Procedure_Score is a quality score calculated by normalizing the different score scales by procedures to a 0.1 to 100.1 scale 
+and excluding outliers.
+The Variety_Score is a representation of how many procedures available at the hospital out of total possible number or procedures 
+on a 0.1 to 100.1 scale.
 score is a cumulative representation of both quality and variety by multiplying the two scores together.
-By both normalizing the various scoring scales for Procedure_Score and calculating a cumulative score that accounts for quality and variety,
-I am confident that the score yields an appropriate indication of which hospitals have the most holistic high-quality care.
+The best_hostpials query take the highest score average grouped by hospital_name and list it from high to low.
+By both normalizing the various scoring scales for Procedure_Score and calculating a cumulative score that accounts for quality 
+and variety, I am confident that the score yields an appropriate indication of which hospitals have the most holistic high-quality 
+care.
 
 
