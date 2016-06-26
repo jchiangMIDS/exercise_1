@@ -1,0 +1,9 @@
+
+
+The above conclusions are listed with 4 columns: State, scores, procedure, and variety. 
+procedure is a quality score calculated by normalizing the different score scales by procedures to a 0.1 to 100.1 scale and excluding outliers.
+variety is a representation of how many procedures available at the hospital out of total possible number or procedures on a 0.1 to 100.1 scale.
+scores is a cumulative representation of both quality and variety by multiplying the two scores together.
+The final query finds the average scores grouped by State and lists the top 10 scores.
+By both normalizing the various scoring scales for procedure and calculating a cumulative score that accounts for quality and variety,
+I am confident that the score yields an appropriate indication of which states have the most holistic high-quality care.
