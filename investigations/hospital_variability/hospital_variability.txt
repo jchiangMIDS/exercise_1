@@ -1,25 +1,20 @@
 See below for top Procedures by variability
 
 Procedure_ID	variability
-SCIP_INF_10 	49.59598912
-	
-SCIP_VTE_2 	49.17843631
-	
-VTE_4 	48.83742665
-	
-HF_2 	48.63370355
-	
-SCIP_INF_1 	48.60377347
-	
-SCIP_INF_2 	48.22791514
-	
-AMI_2 	48.22715017
-	
-STK_2 	48.00980685
-	
-STK_5 	47.88706111
-	
-SCIP_INF_3 	47.59155973
+VTE_4	48.78742665013677
+SCIP_INF_2	48.177915139582474
+STK_2	47.95980684583723
+STK_5	47.83706111401188
+HF_2	47.58370355469146
+SCIP_INF_3	47.541559729577564
+CAC_1	47.29729729729882
+OP_7	46.28924757420487
+HF_3	46.01517429667613
+PC_01	45.963332482105685
 
 To calculated variability of quality scores across hospitals, we looked at how far on average scores deviated from the midpoint
-between MIN and MAX. As described in best_hospitals, I normalized all scoring scales to the same 0.1 to 100.1 scale. Then 
+between MIN and MAX. As described in best_hospitals, I normalized all scoring scales to the same 0.1 to 100.1 scale eliminating 
+outliers. 
+
+This approach enables us to look whether scores for particular procedures deviate furthest on an absolute bases  on the same
+scale, enabling us to correctly assess which procedures have the most variability across hospitals.
