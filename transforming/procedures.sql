@@ -1,4 +1,3 @@
-#Createatable for slimmed down maintable now called procedures
 CREATE TABLE procedures
    ROW FORMAT SERDE "org.apache.hadoop.hive.serde2.columnar.ColumnarSerDe"
    STORED AS RCFile
