@@ -1,0 +1,58 @@
+
+Hospital_Name	base_score
+HEART HOSPITAL OF LAFAYETTE 	100.1
+	
+FAYETTE MEDICAL CENTER	100.1
+	
+PHYSICIANS' SPECIALTY HOSPITAL 	100.1
+	
+NORTH CENTRAL SURGICAL CENTER LLP 	100.1
+	
+PHYSICIANS CENTRE,THE 	100.1
+	
+BAYLOR MEDICAL CENTER AT UPTOWN 	100.1
+	
+OUACHITA COMMUNITY HOSPITAL 	100.1
+	
+WESTLAKE REGIONAL HOSPITAL 	100.1
+	
+ADVANCED SURGICAL HOSPITAL	100.1
+	
+MANHATTAN SURGICAL HOSPITAL LLC 	100.1
+
+
+
+Hospital_Name	scores	Procedure_Score	Variety_Score
+NEW YORK-PRESBYTERIAN HOSPITAL 	7164.413706	84.87261597	84.41372549
+			
+FIRSTHEALTH MOORE REGIONAL HOSPITAL 	7025.3969	81.33646044	86.3745098
+			
+O U MEDICAL CENTER 	6994.79454	80.98216193	86.3745098
+			
+CAROLINAS MEDICAL CENTER/BEHAV HEALTH 	6990.853516	80.93653477	86.3745098
+			
+CAROLINAS MEDICAL CENTER-NORTHEAST 	6978.149617	82.66605433	84.41372549
+			
+HUNTSVILLE HOSPITAL 	6961.24199	80.59370764	86.3745098
+			
+BAYSTATE MEDICAL CENTER 	6950.624765	84.29808161	82.45294118
+			
+METHODIST HEALTHCARE MEMPHIS HOSPITALS 	6914.519862	81.91226986	84.41372549
+			
+TIFT REGIONAL MEDICAL CENTER 	6899.774441	81.73758949	84.41372549
+			
+UNIVERSITY OF KENTUCKY HOSPITAL 	6894.459698	83.61690438	82.45294118
+
+
+The above conclusions are in 2 tables. The first is the top hospital survey results listed with 3 columns: Hospital_Name, base_score.
+The second is from the best_hospital investigations showing top hospitals by quality and variety.
+The base_score is a cumulative survey score calculated based on HCAHPS Base Score normalizing to a 0.1 to 100.1 scale excluding outliers.
+The hospitals_and_patients query take the highest score average grouped by hospital_name and list it from high to low.
+
+The results for the top hospitals by survey results and the top hospitals by quality & variety scores are a bit different. 
+The reason for this centers around variety. In the survey results, patients are evaluating the hospitals only based on the available
+procedures, so if a hospital has very few procedures but are rated high on the procedures they do have, they will be highly rate.
+The best_hospitals question implored us to take in consideration of consistency across variety, hence I employeed a variety score that
+docked hostpial quality scores the less procedures they had. This creates a cumulative best hospitals score that differs from the 
+survey patient survey results. I find this to be acceptable. If we had wanted to see closer correlation, we can apply the same factor on 
+variety of procedures available by hospital to the patient survey results.
